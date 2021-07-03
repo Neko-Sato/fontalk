@@ -4,4 +4,9 @@ import '../components/.dart';
 
 RouteMap routes = RouteMap({
   '/startup': Route((context) => StartUp()),
+  '/app': RouteMap({'/top_screen': Route((context) => TopScreen())}),
+  '/welcome': RouteMap({
+    '/signin': Route((context) => SignIn()),
+    '/register': Route((context) => Register()),
+  }),
 });

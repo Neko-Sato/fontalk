@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 
 PageRoute? generateRoute(
     {required RouteSettings setting, required RouteMap routes}) {
-  print(setting.name);
   WidgetBuilder? build =
       routes.builder(setting.name!.split('/').skip(1).toList());
   if (build != null)
     return MaterialPageRoute(builder: build, settings: setting);
 }
 
-class RouteBase {
-  WidgetBuilder? builder(List<String> path) => null;
+abstract class RouteBase {
+  WidgetBuilder? builder(List<String> path);
 }
 
 class Route extends RouteBase {
