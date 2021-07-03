@@ -1,0 +1,7 @@
+import 'route_helpers.dart';
+export 'route_helpers.dart' show generateRoute;
+import '../components/.dart';
+
+RouteMap routes = RouteMap({
+  '/startup': Route((context) => StartUp()),
+});
