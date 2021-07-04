@@ -81,8 +81,8 @@ class _RegisterState extends State<Register> {
                   if (value == 'new-account') {
                     WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
                       Navigator.of(context)
-                        ..pop()
-                        ..pushNamed('/welcome/setup');
+                        ..popUntil(ModalRoute.withName('/welcome/signin'))
+                        ..pushReplacementNamed('/welcome/setup');
                     });
                   } else {
                     return AlertDialog(title: Text(value), actions: <Widget>[

@@ -8,5 +8,6 @@ RouteMap routes = RouteMap({
   '/welcome': RouteMap({
     '/signin': Route((context) => SignIn()),
     '/register': Route((context) => Register()),
+    '/setup': Route((context) => SetUp()),
   }),
 });

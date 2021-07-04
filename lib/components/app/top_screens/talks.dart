@@ -6,8 +6,13 @@ class Talks extends StatefulWidget {
 }
 
 class _TalksState extends State<Talks> {
+  List<Widget> talks = [];
   @override
   Widget build(BuildContext context) {
-    return Text('Talks');
+    return ListView(children: this.talks);
+  }
+
+  Widget addTalk(String title, Icon icon) {
+    return Text("temp");
   }
 }
