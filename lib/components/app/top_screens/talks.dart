@@ -9,10 +9,20 @@ class _TalksState extends State<Talks> {
   List<Widget> talks = [];
   @override
   Widget build(BuildContext context) {
-    return ListView(children: this.talks);
+    if (talks.isEmpty) {
+      return Text("karadesu");
+    }
+    return ListView(children: this.talks, reverse: true);
   }
 
-  Widget addTalk(String title, Icon icon) {
-    return Text("temp");
+  Widget talk(String title, Icon icon) {
+    this.setState(() => null);
+    return Card(
+      child: GestureDetector(
+        child: ListTile(
+          title: Text("SignOut"),
+        ),
+      ),
+    );
   }
 }

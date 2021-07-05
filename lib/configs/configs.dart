@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../fontalk.dart';
+import '../fontalk/fontalk.dart';
 
 class Configs {
   static late Fontalk fontalk;

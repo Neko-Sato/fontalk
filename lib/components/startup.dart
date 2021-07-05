@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../configs/configs.dart';
-import '../fontalk.dart';
+import '../fontalk/fontalk.dart';
 
 class StartUp extends StatefulWidget {
   @override

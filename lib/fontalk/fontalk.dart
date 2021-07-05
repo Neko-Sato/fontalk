@@ -5,18 +5,23 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:io' show SocketException;
 
+part 'account.dart';
+part 'talks.dart';
+
 class Fontalk {
   late String host = "softbank060076071178.bbtec.net";
   late FirebaseApp firebaseApp;
   late FirebaseAuth firebaseAuth;
   late FirebaseMessaging firebaseMessaging;
   late Account account;
+  late Talks talks;
 
   Fontalk._(this.firebaseApp) {
     this.firebaseAuth = FirebaseAuth.instanceFor(app: this.firebaseApp);
     this.firebaseMessaging = FirebaseMessaging.instance;
     this.firebaseMessaging.app = this.firebaseApp;
     this.account = Account(this);
+    this.talks = Talks(this);
   }
 
   static Future<Fontalk> initialize() async {
@@ -49,61 +54,5 @@ class Fontalk {
     Map<String, dynamic> response = json.decode(temp.body);
     print("$path: ${data.toString()} -> ${response.toString()}");
     return response;
-  }
-}
-
-class Account {
-  late Fontalk fontalk;
-  User? get user => this.fontalk.firebaseAuth.currentUser;
-
-  Account(this.fontalk);
-
-  Future<bool> isSignedIn() async {
-    return this.user != null;
-  }
-
-  Future<String> signIn(AuthCredential credential) async {
-    String temp;
-    try {
-      await this.fontalk.firebaseAuth.signInWithCredential(credential);
-      temp = 'successfully-signin';
-    } on FirebaseAuthException catch (e) {
-      temp = e.code;
-    }
-    return temp;
-  }
-
-  Future<String> register(String email, String password) async {
-    String temp;
-    try {
-      await this
-          .fontalk
-          .firebaseAuth
-          .createUserWithEmailAndPassword(email: email, password: password);
-      temp = 'new-account';
-    } on FirebaseAuthException catch (e) {
-      temp = e.code;
-    }
-    return temp;
-  }
-
-  Future<void> signOut() async {
-    await this.fontalk.firebaseAuth.signOut();
-  }
-
-  Future<void> delete() async {
-    await this.fontalk.send('/user/delete');
-    await this.user!.delete();
-  }
-
-  Future<bool> isAvailableUserId(String value) async {
-    Map response = await this
-        .fontalk
-        .send('/user/is_available_user_id', {'user_id': value});
-    return response["message"] == 'Available';
-  }
-
-  Future<void> setUp({String? name, String? userId}) async {
-    await this.fontalk.send('/user/setup', {'name': name, 'user_id': userId});
   }
 }

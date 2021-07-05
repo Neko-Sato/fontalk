@@ -14,6 +14,11 @@ class _TopScreenState extends State<TopScreen> {
     (context) => Talks(),
     (context) => Settings(),
   ];
+  List<BottomNavigationBarItem> items = [
+    BottomNavigationBarItem(label: 'Home', icon: Icon(Icons.home)),
+    BottomNavigationBarItem(label: 'Talks', icon: Icon(Icons.chat)),
+    BottomNavigationBarItem(label: 'Settings', icon: Icon(Icons.settings)),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,12 +28,7 @@ class _TopScreenState extends State<TopScreen> {
       body: this.bodys[this._currentIndex](context),
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: this._currentIndex,
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(label: 'Home', icon: Icon(Icons.home)),
-            BottomNavigationBarItem(label: 'Talks', icon: Icon(Icons.chat)),
-            BottomNavigationBarItem(
-                label: 'Settings', icon: Icon(Icons.settings)),
-          ],
+          items: this.items,
           onTap: (value) {
             this._currentIndex = value;
             setState(() {});
