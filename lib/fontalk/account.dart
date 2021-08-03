@@ -51,7 +51,20 @@ class Account {
     return response["message"] == 'Available';
   }
 
-  Future<void> setUp({String? name, String? userId}) async {
-    await this.fontalk.send('/user/setup', {'name': name, 'user_id': userId});
+  Future<void> setUp({String? name, String? userId, File? image}) async {
+    await this.fontalk.send('/user/setup', {
+      'name': name,
+      'user_id': userId,
+      'image': image == null ? null : await image.readAsBytes(),
+    });
+  }
+
+  Future<Map<String, dynamic>> info() async {
+    var response = await this.fontalk.send('/user/info');
+    Map<String, dynamic> data = response["data"];
+    if (data['image'] != null) {
+      data.update('image', (value) => Uint8List.fromList(value.cast<int>()));
+    }
+    return data;
   }
 }

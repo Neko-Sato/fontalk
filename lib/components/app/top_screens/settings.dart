@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../../../configs/configs.dart';
 
 class Settings extends StatefulWidget {
+  static String title = 'Settings';
+  static Widget icon = Icon(Icons.settings);
   @override
   createState() => _SettingsState();
 }

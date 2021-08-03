@@ -8,16 +8,20 @@ class TopScreen extends StatefulWidget {
 
 class _TopScreenState extends State<TopScreen> {
   int _currentIndex = 0;
-  List<String> titles = ['Home', 'Talks', 'Settings'];
   List<WidgetBuilder> bodys = [
     (context) => Home(),
     (context) => Talks(),
     (context) => Settings(),
   ];
+  List<String> titles = [
+    Home.title,
+    Talks.title,
+    Settings.title,
+  ];
   List<BottomNavigationBarItem> items = [
-    BottomNavigationBarItem(label: 'Home', icon: Icon(Icons.home)),
-    BottomNavigationBarItem(label: 'Talks', icon: Icon(Icons.chat)),
-    BottomNavigationBarItem(label: 'Settings', icon: Icon(Icons.settings)),
+    BottomNavigationBarItem(label: Home.title, icon: Home.icon),
+    BottomNavigationBarItem(label: Talks.title, icon: Talks.icon),
+    BottomNavigationBarItem(label: Settings.title, icon: Settings.icon),
   ];
   @override
   Widget build(BuildContext context) {

@@ -3,7 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'dart:io' show SocketException;
+import 'dart:io';
+import 'dart:typed_data';
 
 part 'account.dart';
 part 'talks.dart';
@@ -41,7 +42,8 @@ class Fontalk {
 
   Future<Map<String, dynamic>> send(String path,
       [Map<String, dynamic> data = const <String, dynamic>{}]) async {
-    Uri url = Uri.https(this.host, path);
+    //Uri url = Uri.https(this.host, path);
+    Uri url = Uri.http("192.168.3.200", path);
     String body = json.encode(data);
     Map<String, String> headers = {
       "Content-Type": "application/json",

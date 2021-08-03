@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Talks extends StatefulWidget {
+  static String title = 'Talks';
+  static Widget icon = Icon(Icons.chat);
   @override
   createState() => _TalksState();
 }
